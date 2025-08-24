@@ -202,6 +202,19 @@ Mean k‑fold accuracy for the Main_Model reached 0.44 ± 0.16 across five fol
 
 Overall, the Conformer‑based Main_Model attains 60% accuracy and a weighted F1‑score of 0.68 on the test set, clearly outperforming the explored baselines (Table 1). AUC values indicate strong discrimination for normal and ventricular ectopic beats, whereas fusion beats remain challenging.
 
+### Hardware and Training Time
+
+| Resource | Details |
+| --- | --- |
+| GPU | NVIDIA GeForce GTX 1660 Ti (6 GB VRAM) |
+| CPU | Intel Core i7 (6 cores) |
+| RAM | 16 GB |
+| OS | Ubuntu on Windows Subsystem for Linux |
+| CUDA/cuDNN | CUDA 12.2 with cuDNN 9.0 |
+| Python | 3.12.10 |
+| TensorFlow | 2.20.0 |
+
+The final training run on this GPU-enabled system started at 15:42:01 and ended at 16:48:20, for a total of approximately 66 minutes.
 ### Diagnostic Plots
 
 Figures 1–3 visualize complementary aspects of model behavior. The confusion matrix in Figure 1 highlights that most misclassifications arise from confusion between supraventricular ectopic beats and normal rhythms, reflecting the heavy class imbalance. Figure 2 plots one‑versus‑rest ROC curves, demonstrating high separability for normal and ventricular ectopic beats (AUC > 0.84) but considerably lower discrimination for fusion beats (AUC ≈ 0.31). Precision–recall curves in Figure 3 reveal the trade‑off between sensitivity and positive predictive value, with rare rhythms exhibiting steep precision drop‑offs at moderate recall.
