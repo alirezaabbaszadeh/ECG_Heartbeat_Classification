@@ -200,7 +200,7 @@ Mean k‑fold accuracy for the Main_Model reached 0.44 ± 0.16 across five fol
 
 *Table 1. Held‑out test metrics for evaluated architectures.*
 
-Overall, the Conformer‑based Main_Model attains 60% accuracy and a weighted F1‑score of 0.68 on the test set, clearly outperforming the explored baselines (Table 1). AUC values indicate strong discrimination for normal and ventricular ectopic beats, whereas fusion beats remain challenging.
+Relative to the rudimentary Baseline, the Main_Model lifts accuracy from 14 % to 60 % (+46 pp) and macro‑F1 from 0.07 to 0.26 (+0.19)【F:Research_Runs/final_run_Baseline_Model_20250824_182728/classification_report.txt†L11-L12】【F:Research_Runs/final_run_Main_Model_20250824_154136/classification_report.txt†L11-L12】. The CNNLSTM and AttentionOnly variants reach only 18 % and 27 % accuracy with macro‑F1 scores of 0.15 each, leaving the Main_Model ahead by 42–33 pp in accuracy and 0.11 in macro‑F1【F:Research_Runs/final_run_CNNLSTM_Model_20250824_213453/classification_report.txt†L11-L12】【F:Research_Runs/final_run_AttentionOnly_20250824_090531/classification_report.txt†L11-L12】. These gains highlight the importance of combining convolutional and attention mechanisms, though fusion beats remain the most challenging class.
 
 ### Hardware and Training Time
 
