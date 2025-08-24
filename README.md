@@ -259,7 +259,25 @@ Architectures are listed in the `MODELS` array within `run_full_pipeline.sh`; ed
 ## Reproducible Research
 Consistent configuration files, deterministic seeds, and scripted training/evaluation workflows align the project with reproducible research practices, enabling others to replicate and extend the results.
 
+## Citation
+If you use this repository in your research, please cite it as follows:
+
+```bibtex
+@misc{abbaszadeh2025ecg,
+  author       = {Alireza Abbaszadeh},
+  title        = {ECG Heartbeat Classification},
+  year         = {2025},
+  publisher    = {GitHub},
+  howpublished = {\url{https://github.com/AlirezaAbbaszadeh/ECG_Heartbeat_Classification}},
+}
+```
+
+## Acknowledgments
+This research leverages the MIT-BIH Arrhythmia Database and benefits from the open-source contributions of the Conformer community and the broader PhysioNet ecosystem. The project received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
+
 ## References
 
 [1] G. B. Moody and R. G. Mark, “The impact of the MIT-BIH Arrhythmia Database,” *IEEE Engineering in Medicine and Biology Magazine*, vol. 20, no. 3, pp. 45–50, 2001. doi:10.1109/51.932724
 [2] A. Gulati, J. Qin, C.-C. Chiu, et al., “Conformer: Convolution-augmented Transformer for Speech Recognition,” in *Proceedings of Interspeech*, 2020, pp. 5036–5040. doi:10.21437/Interspeech.2020-3015
+[3] P. Rajpurkar, A. Y. Hannun, M. Haghpanahi, C. Bourn, and A. Y. Ng, “Cardiologist-level arrhythmia detection with convolutional neural networks,” *arXiv preprint arXiv:1707.01836*, 2017.
+[4] U. R. Acharya, S. L. Oh, Y. Hagiwara, J. H. Tan, and M. Adam, “A deep convolutional neural network model to classify heartbeats,” *Computers in Biology and Medicine*, vol. 89, pp. 389–396, 2017. doi:10.1016/j.compbiomed.2017.08.022
