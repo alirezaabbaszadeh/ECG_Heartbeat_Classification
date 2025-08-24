@@ -52,6 +52,21 @@ This repository investigates ECG heartbeat classification with a modern Conforme
 4. For GPU acceleration, install the NVIDIA driver and matching CUDA and cuDNN libraries for TensorFlow 2.20 (e.g., CUDA 12.2 and cuDNN 9.0). Refer to the official TensorFlow GPU documentation for details.
 
 ## Data Acquisition
+### Data Summary & Availability
+
+| Metric | Value |
+| --- | --- |
+| Record count | 48 |
+| Total annotated beats | 110,919 |
+| Normal (N) | 90,631 |
+| Supraventricular ectopic (S) | 2,781 |
+| Ventricular ectopic (V) | 7,236 |
+| Fusion (F) | 803 |
+| Unknown/Other (Q) | 9,468 |
+| Sampling frequency | 360 Hz |
+| Dataset version | 1.0.0 |
+
+The MIT-BIH Arrhythmia Database is available from PhysioNet at [https://physionet.org/content/mitdb/1.0.0/](https://physionet.org/content/mitdb/1.0.0/) and should be cited as Moody and Mark (2001) [1]. It is released under the [Open Data Commons Attribution License v1.0](https://physionet.org/content/mitdb/view-license/1.0.0/). Preprocessed scalograms and the canonical training/validation/test splits used in this project can be regenerated with `preprocess_data.py` and `create_batched_tfrecords.py` or retrieved from the project’s `Research_Runs/` directory.
 
 The experiments draw on the **MIT-BIH Arrhythmia Database**, a benchmark collection of 48 half‑hour two‑lead ambulatory ECG recordings originally published by the BIH Arrhythmia Laboratory and now distributed via PhysioNet [1]. The archive provides beat‑level annotations curated by expert electrophysiologists and is widely used for evaluating arrhythmia detection algorithms.
 
