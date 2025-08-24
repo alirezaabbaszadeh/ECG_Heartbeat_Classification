@@ -51,6 +51,34 @@ mit-bih-arrhythmia-database-1.0.0/
 
 Modify the `db_name` and `save_directory` variables in `download_data.py` to target alternative PhysioNet databases or custom storage locations.
 
+## Preprocessing
+
+Convert the raw MIT‑BIH records into model‑ready examples with a two‑stage preprocessing pipeline. Run the scripts in sequence after downloading the database.
+
+### 1. Generate scalograms and beat metadata
+
+```bash
+python preprocess_data.py
+```
+
+This script isolates 187‑sample beats, computes Morlet wavelet scalograms, and writes one HDF5 file per record to `preprocessed_data_h5_raw/`. A companion `metadata.json` in the same directory records, for every beat, its source record, index, and AAMI class label. Signals are deliberately kept **unnormalized** at this stage to avoid train–test leakage; normalization is applied later during dataset loading using statistics derived from the training set.
+
+### 2. Package sequences into batched TFRecords
+
+```bash
+python create_batched_tfrecords.py
+```
+
+Using the stored metadata, this script forms overlapping sequences of three consecutive beats and serializes them in batches of 256 to `tfrecord_data_batched/`. Each TFRecord example embeds the batch size, sequence length, and scalogram dimensions alongside the raw byte arrays, producing a self‑describing format that streams efficiently through `tf.data`.
+
+### Why batched TFRecords?
+
+Batched TFRecords amortize file‑open overhead and permit large sequential reads, significantly accelerating I/O compared with per‑example files. When coupled with `tf.data` interleave and prefetch operations, the batched layout sustains high throughput on both CPUs and GPUs.
+
+### Normalization strategy
+
+Deferring normalization until dataset construction ensures that scaling parameters are computed exclusively from the training split. This on‑the‑fly approach preserves the integrity of validation and test sets and aligns with best practices for reproducible research.
+
 ## Repository Structure
 - **Data preparation** – `download_data.py`, `preprocess_data.py`, and `create_batched_tfrecords.py` fetch the MIT‑BIH arrhythmia dataset, perform signal cleaning, and package examples into TFRecord batches.
 - **Core modules** – `ModelBuilder.py`, `DataLoader.py`, and `Evaluator.py` implement the model architecture, streaming data pipeline, and evaluation metrics.
