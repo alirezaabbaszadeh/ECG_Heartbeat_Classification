@@ -10,6 +10,21 @@ This repository investigates ECG heartbeat classification with a modern Conforme
 - **Conformer architecture** – `ModelBuilder.py` defines the CNN‑Conformer model and related ablation variants.
 - **Evaluation workflow** – `run_kfold_evaluation.py` and `run_final_evaluation.py` provide reproducible k‑fold and held‑out evaluations.
 
+## Installation
+
+1. Ensure **Python 3.10 or newer** is installed. TensorFlow 2.20 requires Python ≥3.10.
+2. Create and activate a virtual environment:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   ```
+3. Upgrade pip and install dependencies:
+   ```bash
+   pip install --upgrade pip
+   pip install -r requirements.txt
+   ```
+4. For GPU acceleration, install the NVIDIA driver and matching CUDA and cuDNN libraries for TensorFlow 2.20 (e.g., CUDA 12.2 and cuDNN 9.0). Refer to the official TensorFlow GPU documentation for details.
+
 ## Repository Structure
 - **Data preparation** – `download_data.py`, `preprocess_data.py`, and `create_batched_tfrecords.py` fetch the MIT‑BIH arrhythmia dataset, perform signal cleaning, and package examples into TFRecord batches.
 - **Core modules** – `ModelBuilder.py`, `DataLoader.py`, and `Evaluator.py` implement the model architecture, streaming data pipeline, and evaluation metrics.
