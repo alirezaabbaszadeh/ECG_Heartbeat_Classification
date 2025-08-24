@@ -79,6 +79,30 @@ Batched TFRecords amortize file‑open overhead and permit large sequential read
 
 Deferring normalization until dataset construction ensures that scaling parameters are computed exclusively from the training split. This on‑the‑fly approach preserves the integrity of validation and test sets and aligns with best practices for reproducible research.
 
+## Dataset Loading
+
+`DataLoader.py` assembles streaming datasets directly from the batched TFRecords and employs a two‑stage shuffling scheme that maximizes example diversity without incurring large memory overhead:
+
+1. **File‑level shuffle** – when `is_training=True`, the list of TFRecord files is shuffled globally so that each epoch traverses records in a different order.
+2. **Interleave shuffle** – `tf.data.Dataset.interleave` reads from several files concurrently (default `cycle_length=4`), mixing individual examples across files to disrupt local ordering.
+
+After decoding, an optional light shuffle with a small buffer adds an additional layer of randomness before batching.
+
+The loader also supports **on‑the‑fly normalization**. If per‑channel `mean` and `scale` arrays are supplied, they are converted to tensors and each scalogram is standardized as `(scalogram - mean) / scale` before being expanded to include a channel dimension.
+
+```python
+from DataLoader import create_dataset, get_all_labels
+
+config = {...}  # paths and preprocessing parameters
+record_names = ["100", "101", "102"]
+mean, scale = train_mean, train_std  # tensors or NumPy arrays
+
+train_ds = create_dataset(record_names, config, batch_size=32,
+                          is_training=True, mean=mean, scale=scale)
+for scalograms, labels in train_ds.take(1):
+    pass  # training loop or debugging
+```
+
 ## Repository Structure
 - **Data preparation** – `download_data.py`, `preprocess_data.py`, and `create_batched_tfrecords.py` fetch the MIT‑BIH arrhythmia dataset, perform signal cleaning, and package examples into TFRecord batches.
 - **Core modules** – `ModelBuilder.py`, `DataLoader.py`, and `Evaluator.py` implement the model architecture, streaming data pipeline, and evaluation metrics.
