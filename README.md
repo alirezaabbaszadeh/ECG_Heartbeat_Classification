@@ -185,6 +185,25 @@ These files are written to the same run directory passed to `Evaluator.save_resu
 
 Precision, recall, and F1‑score contextualize performance under class imbalance, while ROC/AUC summarizes discrimination across thresholds; the confusion matrix highlights systematic misclassifications. Report mean ± standard deviation across folds or repeated runs to convey variability. When comparing models, apply statistical tests on per‑fold metrics to determine whether observed differences exceed random variation (commonly using a significance threshold of *p* < 0.05).
 
+## One‑Command End‑to‑End Pipeline
+
+Execute the complete workflow—from raw PhysioNet records to held‑out test metrics—with a single command:
+
+```bash
+bash run_full_pipeline.sh
+```
+
+The script performs the following stages sequentially:
+
+1. **Download** – `download_data.py` fetches the MIT‑BIH Arrhythmia Database using the `db_name` and `save_directory` variables defined at the top of the script【F:download_data.py†L5-L9】.
+2. **Preprocess** – `preprocess_data.py` computes scalograms and beat metadata according to parameters in its `Config` class (e.g., `DB_DIRECTORY`, `OUTPUT_DIRECTORY`)【F:preprocess_data.py†L22-L36】.
+3. **TFRecord creation** – `create_batched_tfrecords.py` packages the scalograms into batched TFRecords; constants such as `SEQUENCE_LEN`, `BATCH_SIZE_PER_CHUNK`, and `OUTPUT_TFRECORD_DIR` control this step【F:create_batched_tfrecords.py†L23-L28】.
+4. **Hyperparameter tuning** – `run_hyperparameter_tuning.py` explores model configurations and sets `TF_DETERMINISTIC_OPS=1` for reproducibility【F:run_hyperparameter_tuning.py†L91-L93】.
+5. **K‑fold evaluation** – `run_kfold_evaluation.py` reuses the tuned parameters to estimate variance across folds.
+6. **Final evaluation** – `run_final_evaluation.py` trains on the full training set and reports test‑set metrics.
+
+Architectures are listed in the `MODELS` array within `run_full_pipeline.sh`; edit this array to select which models to evaluate. The Python scripts rely on their internal configuration blocks rather than external config files, but environment variables such as `CUDA_VISIBLE_DEVICES` (set to `-1` during TFRecord creation to force CPU usage)【F:create_batched_tfrecords.py†L72-L75】 and `TF_DETERMINISTIC_OPS` (enabled during tuning) influence execution. Adjust these variables as needed for custom hardware setups.
+
 ## Repository Structure
 - **Data preparation** – `download_data.py`, `preprocess_data.py`, and `create_batched_tfrecords.py` fetch the MIT‑BIH arrhythmia dataset, perform signal cleaning, and package examples into TFRecord batches.
 - **Core modules** – `ModelBuilder.py`, `DataLoader.py`, and `Evaluator.py` implement the model architecture, streaming data pipeline, and evaluation metrics.

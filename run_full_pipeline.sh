@@ -1,13 +1,32 @@
 #!/bin/bash
 # This script automates the entire pipeline:
-# 1. Runs hyperparameter tuning for a model.
-# 2. Runs k-fold evaluation for the same model.
-# 3. Runs the final training and evaluation on the test set.
-# It repeats this process for all models listed in the MODELS array.
+# 1. Downloads the MIT-BIH Arrhythmia Database.
+# 2. Preprocesses raw signals into HDF5 scalograms.
+# 3. Creates batched TFRecords from the scalograms.
+# 4. Runs hyperparameter tuning for a model.
+# 5. Runs k-fold evaluation for the same model.
+# 6. Runs the final training and evaluation on the test set.
+# It repeats stages 4-6 for all models listed in the MODELS array.
+
+# --- Download and preprocess data ---
+echo "================================================================="
+echo "=== DOWNLOADING RAW DATA ==="
+echo "================================================================="
+python download_data.py || exit 1
+
+echo "================================================================="
+echo "=== PREPROCESSING RAW SIGNALS ==="
+echo "================================================================="
+python preprocess_data.py || exit 1
+
+echo "================================================================="
+echo "=== CREATING BATCHED TFRECORDS ==="
+echo "================================================================="
+python create_batched_tfrecords.py || exit 1
 
 # --- Define all models you want to run here ---
 MODELS=(
-    #"Main_Model" 
+    #"Main_Model"
     "AttentionOnly" "Baseline_Model" "CNNLSTM_Model")
 
 # Loop through each model in the array
