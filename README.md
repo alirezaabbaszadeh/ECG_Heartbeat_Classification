@@ -1,5 +1,31 @@
 # ECG Heartbeat Classification
 
+## Abstract
+This repository delivers a complete, reproducible workflow for automated ECG heartbeat classification. It integrates a Conformer‑based neural architecture with scripts for data acquisition, signal preprocessing, model training, and rigorous evaluation on the MIT‑BIH Arrhythmia Database. The project emphasizes clinical relevance and adheres to best practices for transparent, replicable machine‑learning research.
+
+## Table of Contents
+- [Clinical Relevance](#clinical-relevance)
+- [Repository Overview](#repository-overview)
+- [Installation](#installation)
+- [Data Acquisition](#data-acquisition)
+- [Ethics & Data Usage](#ethics--data-usage)
+- [Preprocessing Pipeline](#preprocessing-pipeline)
+- [Dataset Loading](#dataset-loading)
+- [Model Architectures](#model-architectures)
+- [Training](#training)
+- [Evaluation](#evaluation)
+- [Results](#results)
+- [Hardware and Training Time](#hardware-and-training-time)
+- [Diagnostic Plots](#diagnostic-plots)
+- [One-Command End-to-End Pipeline](#one-command-end-to-end-pipeline)
+- [Repository Structure](#repository-structure)
+- [Reproducible Research](#reproducible-research)
+- [Contributing](#contributing)
+- [Citation](#citation)
+- [Acknowledgments](#acknowledgments)
+- [License](#license)
+- [References](#references)
+
 ## Clinical Relevance
 Electrocardiogram (ECG) analysis is central to detecting arrhythmias and other cardiac abnormalities. Accurate heartbeat classification helps clinicians identify life‑threatening conditions early, supports continuous patient monitoring, and guides timely intervention.
 
@@ -59,9 +85,9 @@ The MIT‑BIH Arrhythmia Database is distributed by PhysioNet under the [Open Da
 - **Permissible use.** The license permits research and educational activities provided appropriate attribution is given. Using the data for clinical decision making, regulatory submissions, or commercial products may require additional permissions from the data custodians and adherence to jurisdiction‑specific regulations (e.g., HIPAA or GDPR).
 - **IRB and consent.** The original data collection received institutional review board approval and informed consent. Because the released dataset is de‑identified, secondary analyses like those in this repository typically qualify for exemption from further IRB review. Investigators should nevertheless consult their local ethics committee, especially if combining these data with other sources or conducting human‑subjects research that could reintroduce identifiers.
 
-## Preprocessing
+## Preprocessing Pipeline
 
-Convert the raw MIT‑BIH records into model‑ready examples with a two‑stage preprocessing pipeline. Run the scripts in sequence after downloading the database.
+Convert the raw MIT‑BIH records into model‑ready examples with a two‑stage preprocessing workflow. Execute the scripts sequentially after downloading the database.
 
 ### 1. Generate scalograms and beat metadata
 
