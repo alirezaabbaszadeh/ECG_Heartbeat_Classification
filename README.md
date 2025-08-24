@@ -259,6 +259,18 @@ Architectures are listed in the `MODELS` array within `run_full_pipeline.sh`; ed
 ## Reproducible Research
 Consistent configuration files, deterministic seeds, and scripted training/evaluation workflows align the project with reproducible research practices, enabling others to replicate and extend the results.
 
+## Contributing
+Contributions that refine the codebase, documentation, or scientific analyses are welcome. To report a bug or request a new feature, please open an issue through the [GitHub issue tracker](https://github.com/AlirezaAbbaszadeh/ECG_Heartbeat_Classification/issues).
+
+To submit code changes:
+
+1. Fork the repository and create a dedicated branch for your feature or fix.
+2. Implement your changes with clear commit messages and update any relevant documentation.
+3. Verify that the full pipeline or associated evaluation scripts run without errors.
+4. Open a pull request detailing the motivation, proposed solution, and any related issues.
+
+For questions or support, open an issue or contact the maintainer at [abbaszadeh79@gmail.com](mailto:abbaszadeh79@gmail.com).
+
 ## Citation
 If you use this repository in your research, please cite it as follows:
 
