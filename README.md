@@ -275,6 +275,10 @@ If you use this repository in your research, please cite it as follows:
 ## Acknowledgments
 This research leverages the MIT-BIH Arrhythmia Database and benefits from the open-source contributions of the Conformer community and the broader PhysioNet ecosystem. The project received no specific grant from any funding agency in the public, commercial, or not-for-profit sectors.
 
+## License
+
+This repository is released under the permissive [MIT License](LICENSE). The license allows commercial and private use, modification, distribution, and sublicensing, provided that the original copyright and license notice are included with any copies of the software. The software is provided “as is,” without warranty of any kind, and the authors bear no liability for any damages arising from its use.
+
 ## References
 
 [1] G. B. Moody and R. G. Mark, “The impact of the MIT-BIH Arrhythmia Database,” *IEEE Engineering in Medicine and Biology Magazine*, vol. 20, no. 3, pp. 45–50, 2001. doi:10.1109/51.932724
