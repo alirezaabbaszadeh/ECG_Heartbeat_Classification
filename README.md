@@ -149,6 +149,42 @@ Internally, the script partitions the available record names with scikit‑learn
 
 Every tuning run creates a timestamped directory under `Research_Runs/` containing logs, data splits, and configuration files【F:run_hyperparameter_tuning.py†L72-L77】【F:run_hyperparameter_tuning.py†L154-L174】. Fold‑specific assets are stored deeper in `Research_Runs/run_<timestamp>/fold_<n>/`, and the script copies the best hyperparameter set to the top‑level run folder for convenient reuse【F:MainClass.py†L93-L97】【F:run_hyperparameter_tuning.py†L224-L229】.
 
+## Evaluation
+
+### K-fold cross-validation
+
+Assess generalization by re‑using the tuned hyperparameters across stratified folds:
+
+```bash
+python run_kfold_evaluation.py --model_name Main_Model
+```
+
+The script writes fold‑specific histories and a summary of mean and standard‑deviation metrics to `Research_Runs/kfold_eval_<model>_<timestamp>/`【F:run_kfold_evaluation.py†L43-L47】【F:run_kfold_evaluation.py†L180-L183】. Use the aggregated statistics to compare models; significance can be examined via paired tests (e.g., t‑test or Wilcoxon signed‑rank) applied to matching fold metrics.
+
+### Final held‑out evaluation
+
+Train the champion model on all training records and evaluate on the untouched test set:
+
+```bash
+python run_final_evaluation.py --model_name Main_Model
+```
+
+Optional `--epochs` and `--batch_size` arguments override training length and batch size【F:run_final_evaluation.py†L137-L141】. Artifacts—including the final model and evaluation reports—are saved under `Research_Runs/final_run_<model>_<timestamp>/`【F:run_final_evaluation.py†L38-L43】【F:run_final_evaluation.py†L222-L236】.
+
+### Evaluator outputs
+
+`Evaluator.py` produces comprehensive diagnostics for each evaluation run:
+
+- `classification_report.txt` with per‑class precision, recall, F1‑score, and AUC values【F:Evaluator.py†L140-L148】
+- `confusion_matrix.png` visualizing correct versus incorrect classifications【F:Evaluator.py†L150-L160】
+- `roc_curves.png` plotting one‑vs‑rest ROC curves with corresponding AUCs【F:Evaluator.py†L162-L178】
+
+These files are written to the same run directory passed to `Evaluator.save_results`.
+
+### Interpreting metrics and significance
+
+Precision, recall, and F1‑score contextualize performance under class imbalance, while ROC/AUC summarizes discrimination across thresholds; the confusion matrix highlights systematic misclassifications. Report mean ± standard deviation across folds or repeated runs to convey variability. When comparing models, apply statistical tests on per‑fold metrics to determine whether observed differences exceed random variation (commonly using a significance threshold of *p* < 0.05).
+
 ## Repository Structure
 - **Data preparation** – `download_data.py`, `preprocess_data.py`, and `create_batched_tfrecords.py` fetch the MIT‑BIH arrhythmia dataset, perform signal cleaning, and package examples into TFRecord batches.
 - **Core modules** – `ModelBuilder.py`, `DataLoader.py`, and `Evaluator.py` implement the model architecture, streaming data pipeline, and evaluation metrics.
