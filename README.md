@@ -103,6 +103,32 @@ for scalograms, labels in train_ds.take(1):
     pass  # training loop or debugging
 ```
 
+## Model Architectures
+
+### Conformer-Based Network
+
+The primary model, implemented in `ModelBuilder.py`, couples a convolutional front end with stacked **Conformer** blocks (Figure 1 in [2]). Each scalogram passes through a 2‑D CNN feature extractor before being processed by a sequence of Conformer blocks that integrate three complementary modules:
+
+- **Feed‑Forward Module** – two half‑step feed‑forward networks with Swish activation and dropout surround the attention and convolution layers, following the Macaron design.
+- **Multi‑Head Self‑Attention** – captures global temporal context; positional embeddings are added before attention to encode beat order.
+- **Convolution Module** – a depthwise separable 1‑D convolution with gated linear units and batch normalization models local dependencies and sharp morphological patterns.
+
+```text
+Input → ½ Feed‑Forward → Self‑Attention → Convolution → ½ Feed‑Forward → LayerNorm → Output
+```
+
+### Ablation Models
+
+- **Attention‑Only** – removes the convolution module, yielding a Transformer‑style encoder used to quantify the incremental value of local convolutions.
+- **CNN‑LSTM** – replaces Conformer blocks with a unidirectional LSTM after the CNN extractor, providing a classical recurrent baseline for temporal modeling.
+
+```text
+Attention‑Only:  Input → [Self‑Attention → Feed‑Forward] × N → Output
+CNN‑LSTM:       Input scalograms → Time‑Distributed CNN → LSTM → Output
+```
+
+These controlled variants isolate the contribution of attention and convolution mechanisms, enabling rigorous scientific evaluation of architectural choices.
+
 ## Repository Structure
 - **Data preparation** – `download_data.py`, `preprocess_data.py`, and `create_batched_tfrecords.py` fetch the MIT‑BIH arrhythmia dataset, perform signal cleaning, and package examples into TFRecord batches.
 - **Core modules** – `ModelBuilder.py`, `DataLoader.py`, and `Evaluator.py` implement the model architecture, streaming data pipeline, and evaluation metrics.
@@ -115,3 +141,4 @@ Consistent configuration files, deterministic seeds, and scripted training/evalu
 ## References
 
 [1] G. B. Moody and R. G. Mark, “The impact of the MIT-BIH Arrhythmia Database,” *IEEE Engineering in Medicine and Biology Magazine*, vol. 20, no. 3, pp. 45–50, 2001. doi:10.1109/51.932724
+[2] A. Gulati, J. Qin, C.-C. Chiu, et al., “Conformer: Convolution-augmented Transformer for Speech Recognition,” in *Proceedings of Interspeech*, 2020, pp. 5036–5040. doi:10.21437/Interspeech.2020-3015
