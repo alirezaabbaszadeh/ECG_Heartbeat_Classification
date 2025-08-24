@@ -51,6 +51,14 @@ mit-bih-arrhythmia-database-1.0.0/
 
 Modify the `db_name` and `save_directory` variables in `download_data.py` to target alternative PhysioNet databases or custom storage locations.
 
+## Ethics & Data Usage
+
+The MIT‑BIH Arrhythmia Database is distributed by PhysioNet under the [Open Data Commons Attribution License v1.0](https://physionet.org/content/mitdb/view-license/1.0.0/). The records are de‑identified, yet they originate from real patients and must be handled with the same care as other sensitive health information.
+
+- **Patient privacy.** Do not attempt to re‑identify participants. Any derived artifacts or shared models should remain free of information that could reveal individual identities. When publishing, present results in aggregate and avoid uploading raw ECG segments unless required and permissible.
+- **Permissible use.** The license permits research and educational activities provided appropriate attribution is given. Using the data for clinical decision making, regulatory submissions, or commercial products may require additional permissions from the data custodians and adherence to jurisdiction‑specific regulations (e.g., HIPAA or GDPR).
+- **IRB and consent.** The original data collection received institutional review board approval and informed consent. Because the released dataset is de‑identified, secondary analyses like those in this repository typically qualify for exemption from further IRB review. Investigators should nevertheless consult their local ethics committee, especially if combining these data with other sources or conducting human‑subjects research that could reintroduce identifiers.
+
 ## Preprocessing
 
 Convert the raw MIT‑BIH records into model‑ready examples with a two‑stage preprocessing pipeline. Run the scripts in sequence after downloading the database.
