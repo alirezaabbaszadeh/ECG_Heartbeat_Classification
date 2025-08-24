@@ -129,6 +129,26 @@ CNN‑LSTM:       Input scalograms → Time‑Distributed CNN → LSTM → Outpu
 
 These controlled variants isolate the contribution of attention and convolution mechanisms, enabling rigorous scientific evaluation of architectural choices.
 
+## Training
+
+### Hyperparameter tuning
+
+Explore model configurations with `run_hyperparameter_tuning.py`. The script accepts a `--model_name` argument to choose among the implemented architectures【F:run_hyperparameter_tuning.py†L134-L141】:
+
+```bash
+python run_hyperparameter_tuning.py --model_name Main_Model
+```
+
+Internally, the script partitions the available record names with scikit‑learn’s `KFold`, yielding fold‑specific training and validation lists that serve as input to the `TimeSeriesModel` pipeline【F:run_hyperparameter_tuning.py†L177-L183】.
+
+### K‑fold strategy
+
+`TimeSeriesModel` operates on a single fold at a time. For each fold it computes normalization statistics exclusively on the training subset, builds `tf.data` streams, and launches a Hyperband tuner, ensuring that hyperparameter search is free from data leakage【F:MainClass.py†L34-L91】【F:MainClass.py†L125-L149】.
+
+### Tuning artifacts
+
+Every tuning run creates a timestamped directory under `Research_Runs/` containing logs, data splits, and configuration files【F:run_hyperparameter_tuning.py†L72-L77】【F:run_hyperparameter_tuning.py†L154-L174】. Fold‑specific assets are stored deeper in `Research_Runs/run_<timestamp>/fold_<n>/`, and the script copies the best hyperparameter set to the top‑level run folder for convenient reuse【F:MainClass.py†L93-L97】【F:run_hyperparameter_tuning.py†L224-L229】.
+
 ## Repository Structure
 - **Data preparation** – `download_data.py`, `preprocess_data.py`, and `create_batched_tfrecords.py` fetch the MIT‑BIH arrhythmia dataset, perform signal cleaning, and package examples into TFRecord batches.
 - **Core modules** – `ModelBuilder.py`, `DataLoader.py`, and `Evaluator.py` implement the model architecture, streaming data pipeline, and evaluation metrics.
