@@ -1,7 +1,7 @@
 # ECG Heartbeat Classification
 
 ## Abstract
-This repository delivers a complete, reproducible workflow for automated ECG heartbeat classification. It integrates a Conformer‑based neural architecture with scripts for data acquisition, signal preprocessing, model training, and rigorous evaluation on the MIT‑BIH Arrhythmia Database. The project emphasizes clinical relevance and adheres to best practices for transparent, replicable machine‑learning research.
+Leveraged the MIT‑BIH Arrhythmia Database of 48 half‑hour, two‑lead recordings sampled at 360 Hz, yielding about 109 000 annotated beats. Approximately 75 % were normal while the remainder encompassed supraventricular ectopic, ventricular ectopic, fusion, and unknown rhythms, covering five AAMI classes. The workflow isolated 187‑sample beats around each R‑peak, converted them to Morlet wavelet scalograms, and assembled three‑beat sequences to supply temporal context. A Conformer network—convolutional front‑end followed by stacked Conformer blocks with relative attention, residual feed‑forward layers, and dropout—learned joint temporal‑spectral features before a dense classifier. Training used class‑weighted cross‑entropy, normalization from training statistics, and five‑fold cross‑validation preceding a held‑out test. The final model reached 60 % accuracy, macro F1 0.26, weighted F1 0.68, and a mean one‑versus‑rest AUC of 0.66 (0.90 for normal beats). These findings indicated that a modest Conformer could distinguish common arrhythmias, pointing toward lightweight decision support for earlier clinical triage and remote monitoring in ambulatory and telemedicine settings, enabling scalable worldwide applications.
 
 ## Table of Contents
 - [Clinical Relevance](#clinical-relevance)
