@@ -282,6 +282,9 @@ Figures 1–3 visualize complementary aspects of model behavior. The confusion 
 
 ## One‑Command End‑to‑End Pipeline
 
+![End-to-end pipeline](docs/figures/pipeline.svg)
+
+*Figure 4. Sequential stages from data acquisition to final evaluation.*
 Execute the complete workflow—from raw PhysioNet records to held‑out test metrics—with a single command:
 
 ```bash
