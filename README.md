@@ -198,6 +198,26 @@ The following table summarizes held‑out test performance for all evaluated arc
 
 Mean k‑fold accuracy for the Main_Model reached 0.44 ± 0.16 across five folds【F:Research_Runs/kfold_eval_Main_Model_20250823_204942/kfold_summary.json†L5-L6】.
 
+*Table 1. Held‑out test metrics for evaluated architectures.*
+
+Overall, the Conformer‑based Main_Model attains 60% accuracy and a weighted F1‑score of 0.68 on the test set, clearly outperforming the explored baselines (Table 1). AUC values indicate strong discrimination for normal and ventricular ectopic beats, whereas fusion beats remain challenging.
+
+### Diagnostic Plots
+
+Figures 1–3 visualize complementary aspects of model behavior. The confusion matrix in Figure 1 highlights that most misclassifications arise from confusion between supraventricular ectopic beats and normal rhythms, reflecting the heavy class imbalance. Figure 2 plots one‑versus‑rest ROC curves, demonstrating high separability for normal and ventricular ectopic beats (AUC > 0.84) but considerably lower discrimination for fusion beats (AUC ≈ 0.31). Precision–recall curves in Figure 3 reveal the trade‑off between sensitivity and positive predictive value, with rare rhythms exhibiting steep precision drop‑offs at moderate recall.
+
+![Confusion matrix for the Main_Model](docs/figures/confusion_matrix.png)
+
+*Figure 1. Confusion matrix summarizing predicted versus true label counts.*
+
+![One‑vs‑rest ROC curves for the Main_Model](docs/figures/roc_curves.png)
+
+*Figure 2. Receiver operating characteristic curves with per‑class area under the curve.*
+
+![Precision–recall curves for the Main_Model](docs/figures/precision_recall_curves.png)
+
+*Figure 3. Precision–recall trade‑offs across AAMI rhythm classes.*
+
 ## One‑Command End‑to‑End Pipeline
 
 Execute the complete workflow—from raw PhysioNet records to held‑out test metrics—with a single command:
