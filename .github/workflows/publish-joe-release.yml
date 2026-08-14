@@ -22,20 +22,4 @@ jobs:
             echo "Release already exists."
             exit 0
           fi
-          gh release create v1.0-joe-submission \
-            --repo "${GITHUB_REPOSITORY}" \
-            --target b42d42348f93c00f01bdac7dab8c562e024f8807 \
-            --title "Journal of Electrocardiology submission v1.0" \
-            --notes "Fixed public software-and-artifact snapshot accompanying the manuscript Record-Level Evaluation of a Morlet CNN-Conformer for Five-Class ECG Beat Classification.
-
-Includes the source pipeline, fixed record split and configurations, trained Keras models, and archived prediction arrays for all four evaluated architectures.
-
-Artifact verification:
-```
-python3 -m pip install -r requirements-verify.txt
-python3 verify_article_artifacts.py
-```
-
-The verifier checks 36 SHA-256 digests, confirms the common 15,573-beat held-out labels, reproduces headline metrics, and checks the CNN-Conformer cross-validation summary.
-
-This is a research artifact and is not validated for clinical use."
+          gh release create v1.0-joe-submission --repo "${GITHUB_REPOSITORY}" --target b42d42348f93c00f01bdac7dab8c562e024f8807 --title "Journal of Electrocardiology submission v1.0" --notes "Fixed public software-and-artifact snapshot accompanying the manuscript Record-Level Evaluation of a Morlet CNN-Conformer for Five-Class ECG Beat Classification. Includes the source pipeline, fixed record split and configurations, trained Keras models, and archived prediction arrays for all four evaluated architectures. Run python3 verify_article_artifacts.py after installing requirements-verify.txt; the verifier checks 36 SHA-256 digests, the common 15,573-beat held-out labels, headline metrics, and the CNN-Conformer cross-validation summary. This is a research artifact and is not validated for clinical use."
