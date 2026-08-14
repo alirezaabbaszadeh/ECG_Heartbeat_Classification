@@ -1,0 +1,41 @@
+name: Publish JoE submission release
+
+on:
+  push:
+    branches:
+      - agent/joe-reproducibility-release
+    paths:
+      - .github/workflows/publish-joe-release.yml
+
+permissions:
+  contents: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create immutable public release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view v1.0-joe-submission --repo "${GITHUB_REPOSITORY}" >/dev/null 2>&1; then
+            echo "Release already exists."
+            exit 0
+          fi
+          gh release create v1.0-joe-submission \
+            --repo "${GITHUB_REPOSITORY}" \
+            --target b42d42348f93c00f01bdac7dab8c562e024f8807 \
+            --title "Journal of Electrocardiology submission v1.0" \
+            --notes "Fixed public software-and-artifact snapshot accompanying the manuscript Record-Level Evaluation of a Morlet CNN-Conformer for Five-Class ECG Beat Classification.
+
+Includes the source pipeline, fixed record split and configurations, trained Keras models, and archived prediction arrays for all four evaluated architectures.
+
+Artifact verification:
+```
+python3 -m pip install -r requirements-verify.txt
+python3 verify_article_artifacts.py
+```
+
+The verifier checks 36 SHA-256 digests, confirms the common 15,573-beat held-out labels, reproduces headline metrics, and checks the CNN-Conformer cross-validation summary.
+
+This is a research artifact and is not validated for clinical use."
