@@ -1,7 +1,6 @@
 # ======================================================================================
 # Evaluator.py (Rewritten, Clean & Efficient Version)
 #
-# Author: [Your Name/Organization] - Refactored by AI Assistant
 # Date: 2025-08-22
 #
 # Description:

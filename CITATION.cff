@@ -1,0 +1,25 @@
+cff-version: 1.2.0
+message: "If you use this code or its archived outputs, please cite this software release."
+title: "Code and artifacts for Record-Level Evaluation of a Morlet CNN-Conformer for Five-Class ECG Beat Classification"
+type: software
+version: "v1.0-joe-submission"
+date-released: 2026-08-14
+authors:
+  - family-names: Abbaszadeh
+    given-names: Alireza
+    email: alireza.abbaszadeh8558@iau.ir
+    orcid: "https://orcid.org/0009-0007-8253-6042"
+    affiliation: "Department of Computer Engineering, Islamic Azad University, Mashhad, Iran"
+  - family-names: Torkzadeh
+    given-names: Vahid
+    affiliation: "Department of Computer Engineering, Ma.C., Islamic Azad University, Mashhad, Iran"
+repository-code: "https://github.com/alirezaabbaszadeh/ECG_Heartbeat_Classification"
+url: "https://github.com/alirezaabbaszadeh/ECG_Heartbeat_Classification"
+license: MIT
+keywords:
+  - electrocardiography
+  - ECG heartbeat classification
+  - biomedical signal processing
+  - Conformer
+  - continuous wavelet transform
+  - record-level validation

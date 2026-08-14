@@ -1,5 +1,4 @@
 # MainClass.py (Optimal Version - Modified for Flexibility)
-# Author: [Your Name/Organization] - Modified by AI Assistant
 # Date: 2025-08-19
 # Description: This version removes the hardcoded 'tfrecord_dir' path.
 # This makes the class more flexible and allows the run script to specify

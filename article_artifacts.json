@@ -1,0 +1,87 @@
+{
+  "schema_version": 1,
+  "paper_title": "Record-Level Evaluation of a Morlet CNN-Conformer for Five-Class ECG Beat Classification",
+  "release": "v1.0-joe-submission",
+  "class_names": ["Normal", "SVEB", "VEB", "Fusion", "Unknown"],
+  "expected_test_records": ["228", "207", "208", "233", "220", "231", "106"],
+  "expected_support": [12061, 214, 2913, 383, 2],
+  "split_files": [
+    "Research_Runs/tuning_Main_Model_20250823_145919/data_splits.json",
+    "Research_Runs/tuning_AttentionOnly_20250824_020831/data_splits.json",
+    "Research_Runs/tuning_Baseline_Model_20250824_100320/data_splits.json",
+    "Research_Runs/tuning_CNNLSTM_Model_20250824_192010/data_splits.json"
+  ],
+  "models": {
+    "CNN-Conformer": {
+      "prediction_file": "Research_Runs/final_run_Main_Model_20250824_154136/raw_predictions.npz",
+      "accuracy": 0.597123226096449,
+      "macro_f1": 0.26321364905733396,
+      "weighted_f1": 0.6774360872891049,
+      "auc": [0.9009211479837024, 0.6680809997243542, 0.8431131296270084, 0.31398370853436974, 0.5836651467471582]
+    },
+    "CNN-attention": {
+      "prediction_file": "Research_Runs/final_run_AttentionOnly_20250824_090531/raw_predictions.npz",
+      "accuracy": 0.2693764849418866,
+      "macro_f1": 0.14867784112445143,
+      "weighted_f1": 0.37873784486855633,
+      "auc": [0.7649731107757283, 0.7624842325088095, 0.6882739926537301, 0.40261766965693047, 0.8048616016954595]
+    },
+    "CNN-LSTM": {
+      "prediction_file": "Research_Runs/final_run_CNNLSTM_Model_20250824_213453/raw_predictions.npz",
+      "accuracy": 0.17864252231426186,
+      "macro_f1": 0.15434839093361746,
+      "weighted_f1": 0.2861812966307576,
+      "auc": [0.7306782894054691, 0.7342302269727694, 0.8586077609278882, 0.471090383428702, 0.027840215785755573]
+    },
+    "CNN-only": {
+      "prediction_file": "Research_Runs/final_run_Baseline_Model_20250824_182728/raw_predictions.npz",
+      "accuracy": 0.1361972644962435,
+      "macro_f1": 0.06923982287355473,
+      "weighted_f1": 0.2257001519391224,
+      "auc": [0.6921780635225757, 0.6520596161768223, 0.7207379324258146, 0.4057286554813958, 0.8558056643760837]
+    }
+  },
+  "main_model_kfold": {
+    "file": "Research_Runs/kfold_eval_Main_Model_20250823_204942/kfold_summary.json",
+    "mean_accuracy": 0.44154581129550935,
+    "std_accuracy": 0.1612352734360451
+  },
+  "artifact_checksums": {
+    "Research_Runs/final_run_AttentionOnly_20250824_090531/classification_report.txt": "14bbb098a153f913749ec13cb38decf99b5927770a5672d868350383a90bfd0c",
+    "Research_Runs/final_run_AttentionOnly_20250824_090531/final_model_AttentionOnly.keras": "79c360a88e951e8a0a4e8fc2380777c55833499b9f297a153f0073825f988365",
+    "Research_Runs/final_run_AttentionOnly_20250824_090531/final_model_training_history.json": "0eb1045bcc534affa26faff6f5b67611d5c99f94f3e6b0da003790f49e6fecc1",
+    "Research_Runs/final_run_AttentionOnly_20250824_090531/raw_predictions.npz": "4f4a0b430bfbd08839ddb535eb253c0c5d63b59e8fb4b581e2ad2971dfb5e0ec",
+    "Research_Runs/final_run_Baseline_Model_20250824_182728/classification_report.txt": "978e0a96568a38d72a1926caf3bede125e336c91b74198142e336f0d3f46f3d7",
+    "Research_Runs/final_run_Baseline_Model_20250824_182728/final_model_Baseline_Model.keras": "98696b31c9d984a39604d2d924459b33b0a2213af55a933c7f5b1228e8bf1e46",
+    "Research_Runs/final_run_Baseline_Model_20250824_182728/final_model_training_history.json": "e7000cf1ab9ee562afc15628f222282e61f79225bbd3b4e15cad9167d1af6cf1",
+    "Research_Runs/final_run_Baseline_Model_20250824_182728/raw_predictions.npz": "b1cd235bd8ec30a0d488a35dd2e6dc3dc308101d7c600d83e8d9fe465a7d0d90",
+    "Research_Runs/final_run_CNNLSTM_Model_20250824_213453/classification_report.txt": "8060bc560a5aa8f8ff3a6b68851e5022d638a7adf6d97fea4148cb282b475728",
+    "Research_Runs/final_run_CNNLSTM_Model_20250824_213453/final_model_CNNLSTM_Model.keras": "47215c84c18acad66e0c84e57388bfbfb7775dcbe36a1e169cc7cf72d08854f4",
+    "Research_Runs/final_run_CNNLSTM_Model_20250824_213453/final_model_training_history.json": "c384004a6ec28ebcd601dc0b7ff0fa3761720f9bd7f5dc8da66ae35fa0defe89",
+    "Research_Runs/final_run_CNNLSTM_Model_20250824_213453/raw_predictions.npz": "c619c0967f431237628cc9ae9dbe5b2f2cb5f86e768a6e970f132c46ec8683f5",
+    "Research_Runs/final_run_Main_Model_20250824_154136/classification_report.txt": "4b6156b75c1a73534708b691b19564fd7dfce3aac65189868e9e604f599111ba",
+    "Research_Runs/final_run_Main_Model_20250824_154136/final_model_Main_Model.keras": "d9b254ae9190aa1653b4692fd32b0c99884c3897a0b5db2167236d9132a79654",
+    "Research_Runs/final_run_Main_Model_20250824_154136/final_model_training_history.json": "d6242d9bd4b565f1308e8e4d36211da4f927f6e3c5208139474790d87e301ffc",
+    "Research_Runs/final_run_Main_Model_20250824_154136/raw_predictions.npz": "66d00f8b05862b34698f5210b4b7f3dc67e8f2957c8424e1e42238f01dca8cdc",
+    "Research_Runs/kfold_eval_Main_Model_20250823_204942/best_kfold_model_Main_Model.keras": "7cf22b5a5a3e15d9623fda15071bab3e2a1d72d8db2764c9470a579da523cbe6",
+    "Research_Runs/kfold_eval_Main_Model_20250823_204942/evaluation_run_config.json": "3eb7862d39de3dfed1e7e1cc7bfd3a2c12f351c6a8be3433606cc063882ee866",
+    "Research_Runs/kfold_eval_Main_Model_20250823_204942/fold_1_history.json": "15e58810ad176f221d0cece93d83627a63cb455c08db4fbd728aabeb3fc0fb97",
+    "Research_Runs/kfold_eval_Main_Model_20250823_204942/fold_2_history.json": "8078196943c3ea986a8b4578076e8903236e3189823891d267a52ca02c1978b4",
+    "Research_Runs/kfold_eval_Main_Model_20250823_204942/fold_3_history.json": "f4ec8b9c6f8ac7180cc0c9f9a50a8786024a02d33d971e9dfe38e41caaeea64d",
+    "Research_Runs/kfold_eval_Main_Model_20250823_204942/fold_4_history.json": "f203bd32cc9618879c59799bb0028ece93465b4941a2ee04dac0f5fd48ee6895",
+    "Research_Runs/kfold_eval_Main_Model_20250823_204942/fold_5_history.json": "012f501f0373eb30c0ebc8416e135c938d6b313fac91bf0fcae19938c9f21879",
+    "Research_Runs/kfold_eval_Main_Model_20250823_204942/kfold_summary.json": "58f11491d30cfcbccc81ce331e24a4aa88a66a1ee88ad425944fd0a3fa135d31",
+    "Research_Runs/tuning_AttentionOnly_20250824_020831/best_hyperparameters_AttentionOnly.json": "f7e44421ca13e06bea51cbbc28bd181debed1e7732dbfe15248e03baa3485a62",
+    "Research_Runs/tuning_AttentionOnly_20250824_020831/data_splits.json": "21e96090bbc05529999a3fc8b2035d153a372af3d8c35e58719921c039f70ec0",
+    "Research_Runs/tuning_AttentionOnly_20250824_020831/tuning_run_config.json": "3eb7862d39de3dfed1e7e1cc7bfd3a2c12f351c6a8be3433606cc063882ee866",
+    "Research_Runs/tuning_Baseline_Model_20250824_100320/best_hyperparameters_Baseline_Model.json": "a4331da1d458f82d87b3f9f3996d5c2ae7b50ca62b596791105ed900fde57a98",
+    "Research_Runs/tuning_Baseline_Model_20250824_100320/data_splits.json": "21e96090bbc05529999a3fc8b2035d153a372af3d8c35e58719921c039f70ec0",
+    "Research_Runs/tuning_Baseline_Model_20250824_100320/tuning_run_config.json": "3eb7862d39de3dfed1e7e1cc7bfd3a2c12f351c6a8be3433606cc063882ee866",
+    "Research_Runs/tuning_CNNLSTM_Model_20250824_192010/best_hyperparameters_CNNLSTM_Model.json": "51ac5efe1e6f780bc04a65c8f61c07f064f3ffcf5ee00bf77e0c7e4a0a4a64de",
+    "Research_Runs/tuning_CNNLSTM_Model_20250824_192010/data_splits.json": "21e96090bbc05529999a3fc8b2035d153a372af3d8c35e58719921c039f70ec0",
+    "Research_Runs/tuning_CNNLSTM_Model_20250824_192010/tuning_run_config.json": "3eb7862d39de3dfed1e7e1cc7bfd3a2c12f351c6a8be3433606cc063882ee866",
+    "Research_Runs/tuning_Main_Model_20250823_145919/best_hyperparameters_Main_Model.json": "517a0593f607654857b5d0fd92c23b43a776b6776e38a4f2c7fc4365089bb2f7",
+    "Research_Runs/tuning_Main_Model_20250823_145919/data_splits.json": "21e96090bbc05529999a3fc8b2035d153a372af3d8c35e58719921c039f70ec0",
+    "Research_Runs/tuning_Main_Model_20250823_145919/tuning_run_config.json": "3eb7862d39de3dfed1e7e1cc7bfd3a2c12f351c6a8be3433606cc063882ee866"
+  }
+}

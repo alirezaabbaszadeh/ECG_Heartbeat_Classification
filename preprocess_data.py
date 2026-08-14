@@ -1,5 +1,4 @@
 # preprocess_data.py (Rewritten - Stage 1)
-# Author: [Your Name/Organization]
 # Date: 2025-08-18
 # Description: This rewritten script removes all data normalization (StandardScaler)
 # to prevent data leakage. It now computes scalograms from the raw signals and

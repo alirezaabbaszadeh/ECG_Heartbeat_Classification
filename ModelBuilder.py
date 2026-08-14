@@ -1,5 +1,4 @@
 # ModelBuilder.py (Ultimate Version with Full Conformer and Enhanced Ablation Study)
-# Author: [Your Name/Organization] - Rewritten by AI Assistant
 # Date: 2025-08-22
 # Description:
 # This definitive version enhances the ablation study by adding a new model:

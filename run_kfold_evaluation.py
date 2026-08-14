@@ -1,7 +1,6 @@
 # ======================================================================================
 # run_kfold_evaluation.py (Definitive & Optimized Version)
 #
-# Author: [Your Name/Organization] - Merged & Optimized by AI Assistant
 # Date: 2025-08-23
 #
 # Description:
