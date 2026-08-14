@@ -1,5 +1,4 @@
 # create_batched_tfrecords.py (Fixed Version)
-# Author: [Your Name/Organization] - Corrected by AI Assistant
 # Date: 2025-08-19
 # Description: This corrected version resolves the "CUDA_ERROR_NOT_INITIALIZED"
 # by making the helper functions TensorFlow-agnostic during multiprocessing.

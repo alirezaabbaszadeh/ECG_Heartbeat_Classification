@@ -1,0 +1,12 @@
+.venv/
+__pycache__/
+*.py[cod]
+.DS_Store
+
+# Regenerable data products; the source database remains on PhysioNet.
+mit-bih-arrhythmia-database-1.0.0/
+preprocessed_data_h5_raw/
+tfrecord_data_batched/
+
+# New local experiment outputs are not part of the fixed article release.
+Research_Runs/run_*/

@@ -1,7 +1,6 @@
 # ======================================================================================
 # run_final_evaluation.py (Final Corrected & Optimized Version)
 #
-# Author: [Your Name/Organization] - Refactored by AI Assistant
 # Date: 2025-08-22
 #
 # Description:

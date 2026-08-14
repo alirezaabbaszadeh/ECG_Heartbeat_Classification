@@ -1,5 +1,4 @@
 # DataLoader.py (Rewritten with Combined Shuffling Strategy)
-# Author: [Your Name/Organization] - Enhanced by AI Assistant
 # Date: 2025-08-23
 # Description: This definitive version combines file-level shuffling with
 # tf.data.Dataset.interleave to achieve maximum data randomization

@@ -1,0 +1,29 @@
+{
+  "title": "Code and artifacts for Record-Level Evaluation of a Morlet CNN-Conformer for Five-Class ECG Beat Classification",
+  "version": "v1.0-joe-submission",
+  "upload_type": "software",
+  "description": "Source code, fixed experiment configurations, trained models, and prediction arrays supporting a record-level evaluation of four ECG heartbeat classifiers on the MIT-BIH Arrhythmia Database.",
+  "creators": [
+    {
+      "name": "Abbaszadeh, Alireza",
+      "orcid": "0009-0007-8253-6042",
+      "affiliation": "Department of Computer Engineering, Islamic Azad University, Mashhad, Iran"
+    },
+    {
+      "name": "Torkzadeh, Vahid",
+      "affiliation": "Department of Computer Engineering, Ma.C., Islamic Azad University, Mashhad, Iran"
+    }
+  ],
+  "access_right": "open",
+  "license": "mit",
+  "language": "eng",
+  "keywords": [
+    "electrocardiography",
+    "ECG heartbeat classification",
+    "biomedical signal processing",
+    "Conformer",
+    "continuous wavelet transform",
+    "record-level validation",
+    "MIT-BIH Arrhythmia Database"
+  ]
+}

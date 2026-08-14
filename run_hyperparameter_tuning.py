@@ -5,7 +5,6 @@
 # ======================================================================================
 # run_hyperparameter_tuning.py (Advanced, Flexible Version)
 #
-# Author: [Your Name/Organization] - Enhanced by AI Assistant
 # Date: 2025-08-22
 #
 # Description:
